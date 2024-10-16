@@ -19,12 +19,15 @@ public class UserCredential implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
-    private Boolean isAccNonExpired;
-    private Boolean isAccNonLocked;
-    private Boolean isCredentialsNonExpired;
-    private Boolean isEnabled;
+    private String fullName;
+    private Boolean isAccNonExpired = true;
+    private Boolean isAccNonLocked = true;
+    private Boolean isCredentialsNonExpired = true;
+    private Boolean isEnabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

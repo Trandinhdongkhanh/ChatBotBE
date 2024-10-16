@@ -1,5 +1,6 @@
 package com.tddk.chatbotapp.dto.req;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -8,6 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class AuthReq {
+    @NotBlank(message = "Username may not be blank")
     private String username;
+    @NotBlank(message = "Passowrd may not be blank")
     private String password;
 }
