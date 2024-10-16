@@ -5,11 +5,12 @@ import com.tddk.chatbotapp.dto.res.ChatRes;
 import com.tddk.chatbotapp.entity.ChatResponse;
 import com.tddk.chatbotapp.repo.ChatResponseRepo;
 import com.tddk.chatbotapp.service.IChatService;
+import com.tddk.chatbotapp.util.RandomList;
+import com.tddk.chatbotapp.util.TextJustification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -18,11 +19,11 @@ public class ChatService implements IChatService {
 
     @Override
     public ChatRes chat(ChatReq req) {
-        List<ChatResponse> resList = repo.findByKeyword(req.getQuestion().trim().toLowerCase());
-        Random random = new Random();
-        ChatResponse cRes = resList.isEmpty() ? null : resList.get(random.nextInt(resList.size()));
+        List<ChatResponse> resList = repo.findByKeyword(TextJustification.justify(req.getQuestion()));
+        ChatResponse res = RandomList.random(resList);
+
         return ChatRes.builder()
-                .res(cRes != null ? cRes.getResponse() : "Can you please provide me with more information")
+                .res(res != null ? res.getResponse() : "Can you please provide me with more information ?")
                 .build();
     }
 }
