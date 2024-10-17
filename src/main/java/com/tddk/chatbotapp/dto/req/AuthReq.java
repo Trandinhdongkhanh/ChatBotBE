@@ -11,6 +11,6 @@ import lombok.*;
 public class AuthReq {
     @NotBlank(message = "Username may not be blank")
     private String username;
-    @NotBlank(message = "Passowrd may not be blank")
+    @NotBlank(message = "Password may not be blank")
     private String password;
 }

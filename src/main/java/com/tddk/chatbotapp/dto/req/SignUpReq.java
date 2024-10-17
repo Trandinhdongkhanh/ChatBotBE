@@ -9,7 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SignUpReq extends AuthReq{
+public class SignUpReq {
+    @NotBlank(message = "Username may not be blank")
+    private String username;
+    @NotBlank(message = "Password may not be blank")
+    private String password;
     @JsonProperty("full_name")
     @NotBlank(message = "Full name may not be blank")
     private String fullName;

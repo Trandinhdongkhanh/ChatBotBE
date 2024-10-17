@@ -15,11 +15,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ChatService implements IChatService {
-    private final ChatResponseRepo repo;
+    private final ChatResponseRepo chatRepo;
 
     @Override
     public ChatRes chat(ChatReq req) {
-        List<ChatResponse> resList = repo.findByKeyword(TextJustification.justify(req.getQuestion()));
+        List<ChatResponse> resList = chatRepo.findByKeyword(TextJustification.justify(req.getQuestion()));
         ChatResponse res = RandomList.random(resList);
 
         return ChatRes.builder()

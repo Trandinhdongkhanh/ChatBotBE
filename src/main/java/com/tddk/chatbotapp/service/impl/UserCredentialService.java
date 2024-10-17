@@ -10,10 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserCredentialService implements IUserCredentialService {
-    private final UserCredentialRepo repo;
+    private final UserCredentialRepo userRepo;
     private final PasswordEncoder encoder;
 
     @Override
@@ -21,8 +23,16 @@ public class UserCredentialService implements IUserCredentialService {
         UserCredential user = UserCredential.builder()
                 .username(req.getUsername())
                 .password(encoder.encode(req.getPassword()))
-                .fullName(req.getFullName())
+                .isAccNonExpired(true)
+                .isAccNonLocked(true)
+                .isEnabled(true)
+                .isCredentialsNonExpired(true)
                 .build();
-        return Mapper.toUserRes(repo.save(user));
+        return Mapper.toUserRes(userRepo.save(user));
+    }
+
+    @Override
+    public List<UserRes> getUsers() {
+        return userRepo.findAll().stream().map(Mapper::toUserRes).toList();
     }
 }
