@@ -1,6 +1,7 @@
 package com.tddk.chatbotapp.dto.res;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tddk.chatbotapp.enums.TokenType;
 import lombok.*;
 
 @Getter
@@ -13,4 +14,8 @@ public class TokenRes {
     private String accessToken;
     @JsonProperty("refresh_token")
     private String refreshToken;
+    @JsonProperty("access_token_expiry")
+    private int accessTokenExpiry;
+    @JsonProperty("token_type")
+    private TokenType tokenType;
 }

@@ -27,7 +27,7 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(ApiRes.builder()
-                        .code(HttpStatus.OK.value())
+                        .code(HttpStatus.CREATED.value())
                         .data(userService.signup(req))
                         .build());
     }
@@ -36,11 +36,10 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "Get users successfully")
     @GetMapping("/users")
     public ResponseEntity<ApiRes> getUsers() {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(ApiRes.builder()
-                        .code(HttpStatus.CREATED.value())
-                        .data(userService.getUsers())
-                        .build());
+        return ResponseEntity.ok(ApiRes.builder()
+                .code(HttpStatus.OK.value())
+                .data(userService.getUsers())
+                .build());
+
     }
 }
