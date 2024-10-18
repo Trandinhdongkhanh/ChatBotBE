@@ -3,6 +3,9 @@ package com.tddk.chatbotapp.controller;
 import com.tddk.chatbotapp.dto.req.SignUpReq;
 import com.tddk.chatbotapp.dto.res.ApiRes;
 import com.tddk.chatbotapp.service.impl.UserCredentialService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserCredentialService userService;
 
+    @Operation(summary = "Sign up new user")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Sign up successfully")})
     @PostMapping("/user")
     public ResponseEntity<ApiRes> signup(@RequestBody @Valid SignUpReq req) {
         return ResponseEntity
@@ -27,11 +32,11 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<ApiRes> getUsers() {
-        return ResponseEntity.ok(
-                ApiRes.builder()
-                        .code(HttpStatus.OK.value())
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(ApiRes.builder()
+                        .code(HttpStatus.CREATED.value())
                         .data(userService.getUsers())
-                        .build()
-        );
+                        .build());
     }
 }
