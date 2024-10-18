@@ -3,6 +3,7 @@ package com.tddk.chatbotapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "user_credential")
+@ToString
 public class UserCredential implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +30,11 @@ public class UserCredential implements UserDetails {
     private Boolean isAccNonLocked = true;
     private Boolean isCredentialsNonExpired = true;
     private Boolean isEnabled = true;
+    private List<String> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).toList();
     }
 
     @Override

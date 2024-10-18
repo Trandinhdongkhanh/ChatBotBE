@@ -3,6 +3,8 @@ package com.tddk.chatbotapp.controller;
 import com.tddk.chatbotapp.dto.req.ChatReq;
 import com.tddk.chatbotapp.dto.res.ApiRes;
 import com.tddk.chatbotapp.service.impl.ChatService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatController {
     private final ChatService chatService;
 
+    @Operation(summary = "User send chat request")
+    @ApiResponse(responseCode = "200", description = "Send chat request successfully")
     @PostMapping("/chat")
     public ResponseEntity<ApiRes> chat(@RequestBody @Valid ChatReq req) {
         return ResponseEntity.ok().body(
