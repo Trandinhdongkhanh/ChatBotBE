@@ -21,7 +21,9 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
 
 jwt:
-  rsa-private-key: classpath:certs/privateKey.pem
-  rsa-public-key: classpath:certs/publicKey.pem
+  key: 07e32a512f7c5d34fd767d45ad21d0bcee00d864e962148b7b3312f6e9592fb6 #256-bit = 64 characters

@@ -3,6 +3,7 @@ package com.tddk.chatbotapp.service.impl;
 import com.tddk.chatbotapp.dto.req.SignUpReq;
 import com.tddk.chatbotapp.dto.res.UserRes;
 import com.tddk.chatbotapp.entity.UserCredential;
+import com.tddk.chatbotapp.enums.UserRole;
 import com.tddk.chatbotapp.repo.UserCredentialRepo;
 import com.tddk.chatbotapp.service.IUserCredentialService;
 import com.tddk.chatbotapp.util.Mapper;
@@ -27,6 +28,7 @@ public class UserCredentialService implements IUserCredentialService {
                 .isAccNonLocked(true)
                 .isEnabled(true)
                 .isCredentialsNonExpired(true)
+                .roles(List.of(UserRole.USER.name()))
                 .build();
         return Mapper.toUserRes(userRepo.save(user));
     }
