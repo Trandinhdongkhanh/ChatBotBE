@@ -24,6 +24,7 @@ public class UserCredentialService implements IUserCredentialService {
         UserCredential user = UserCredential.builder()
                 .username(req.getUsername())
                 .password(encoder.encode(req.getPassword()))
+                .fullName(req.getFullName())
                 .isAccNonExpired(true)
                 .isAccNonLocked(true)
                 .isEnabled(true)
