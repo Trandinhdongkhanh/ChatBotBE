@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+src/main/resources/chatbot-4503f-firebase-adminsdk-mc616-538f631c03.json

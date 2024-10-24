@@ -24,6 +24,15 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
+      enabled: true
 
 jwt:
   key: 07e32a512f7c5d34fd767d45ad21d0bcee00d864e962148b7b3312f6e9592fb6 #256-bit = 64 characters
+
+fb:
+  key: chatbot-4503f-firebase-adminsdk-mc616-538f631c03.json
+  bucket: chatbot-4503f.appspot.com
