@@ -48,6 +48,18 @@ public class AppConfig implements CommandLineRunner {
                     .response("You're welcome! Happy to help.")
                     .build(),
             ChatResponse.builder()
+                    .keyword("tell me a story")
+                    .response("""
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has\s
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took\s
+                            a galley of type and scrambled it to make a type specimen book. It has survived not only\s
+                            five centuries, but also the leap into electronic typesetting, remaining essentially\s
+                            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing\s
+                            Lorem Ipsum passages, and more recently with desktop publishing software like Aldus\s
+                            PageMaker including versions of Lorem Ipsum.
+                           \s""".trim().replaceAll("\\s+", " "))
+                    .build(),
+            ChatResponse.builder()
                     .keyword("how to use")
                     .response("Which feature would you like help with? Let me guide you.")
                     .build()
